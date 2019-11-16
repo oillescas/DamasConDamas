@@ -1,5 +1,8 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class Game {
 
 	Board board;
@@ -38,8 +41,12 @@ public class Game {
 
 	public void move(Coordinate origin, Coordinate target) {
 		assert this.isCorrect(origin, target) == null : "Incorrect move "+this.isCorrect(origin, target);
-		if (origin.diagonalDistance(target) == 2) {
-			this.board.remove(origin.betweenDiagonal(target));
+		if (origin.diagonalDistance(target) >= 2) {
+			List<Coordinate> betweens = origin.betweensDiagonal(target);
+			for (Iterator<Coordinate> iterator = betweens.iterator(); iterator.hasNext();) {
+				Coordinate coordinate = (Coordinate) iterator.next();
+				if(this.getPiece(coordinate)!=null) this.board.remove(coordinate);
+			}
 		}
 		this.board.move(origin, target);
 		if (this.board.getPiece(target).isLimit(target)){

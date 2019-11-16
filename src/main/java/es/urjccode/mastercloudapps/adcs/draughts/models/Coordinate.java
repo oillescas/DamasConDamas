@@ -1,5 +1,8 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coordinate {
 
     private int row;
@@ -44,6 +47,7 @@ public class Coordinate {
     Coordinate betweenDiagonal(Coordinate coordinate) {
         assert coordinate != null;
         assert this.diagonalDistance(coordinate) == 2;
+        
         int rowShift = 1;
         if (coordinate.row - this.row < 0) {
             rowShift = -1;
@@ -52,7 +56,35 @@ public class Coordinate {
         if (coordinate.column - this.column < 0) {
             columnShift = -1;
         }
-        return new Coordinate(this.row + rowShift, this.column + columnShift);
+        
+        return  new Coordinate(this.row + rowShift, this.column + columnShift);
+        
+    }
+    
+    List<Coordinate> betweensDiagonal(Coordinate coordinate) {
+        assert coordinate != null;
+        
+        List<Coordinate> between = new ArrayList<Coordinate>();
+        
+        
+        int rowShift = 1;
+        if (coordinate.row - this.row < 0) {
+            rowShift = -1;
+        }
+        int columnShift = 1;
+        if (coordinate.column - this.column < 0) {
+            columnShift = -1;
+        }
+        
+        Coordinate next = new Coordinate(this.row + rowShift, this.column + columnShift);
+        
+        if(this.diagonalDistance(coordinate)>2) {
+        	between = next.betweensDiagonal(coordinate);
+        }
+        
+        between.add(next);
+        
+        return between;
     }
 
     boolean isBlack() {
