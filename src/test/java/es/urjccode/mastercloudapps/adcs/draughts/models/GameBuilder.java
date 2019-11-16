@@ -22,7 +22,9 @@ public class GameBuilder {
 				for (int j = 0; j < row.length(); j++) {
 					char square = row.charAt(j);
 					if(square=='b') board.put(new Coordinate(i, j), new Piece(Color.WHITE));
-					if(square=='n') board.put(new Coordinate(i, j), new Piece(Color.BLACK));
+					else if(square=='n') board.put(new Coordinate(i, j), new Piece(Color.BLACK));
+					else if(square=='B') board.put(new Coordinate(i, j), new Draught(Color.WHITE));
+					else if(square=='N') board.put(new Coordinate(i, j), new Draught(Color.WHITE));
 				}
 			}
 		}
