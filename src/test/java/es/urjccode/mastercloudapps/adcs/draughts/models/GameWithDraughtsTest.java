@@ -104,4 +104,18 @@ public class GameWithDraughtsTest {
         assertEquals(game.getPiece(target).getColor(), Color.BLACK);
     }
     
+    @Test
+    public void testGivenGameWhenWhitePawnMoveFiveSquaresThenOk() {
+    	Game game = new GameBuilder()
+    			.putRow(7, "B       ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(7,0);
+        Coordinate target = new Coordinate(2,5);
+        
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(game.getPiece(target).getColor(), Color.WHITE);
+    }
+    
 }
