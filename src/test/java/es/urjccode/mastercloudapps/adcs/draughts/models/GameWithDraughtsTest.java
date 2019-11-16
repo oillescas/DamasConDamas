@@ -1,5 +1,6 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -72,6 +73,20 @@ public class GameWithDraughtsTest {
         assertNull(game.getPiece(origin.betweenDiagonal(target)));
         assertNull(game.getPiece(origin));
         assertTrue(king instanceof Draught);
+    }
+    
+    @Test
+    public void testGivenGameWhenWhitePawnMoveBackThenOk() {
+    	Game game = new GameBuilder()
+    			.putRow(1, "  B     ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(1,2);
+        Coordinate target = new Coordinate(2,3);
+        
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(game.getPiece(target).getColor(), Color.WHITE);
     }
     
 }
