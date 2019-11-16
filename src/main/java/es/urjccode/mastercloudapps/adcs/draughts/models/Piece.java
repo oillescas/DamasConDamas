@@ -21,15 +21,19 @@ public class Piece {
 			return Error.NOT_ADVANCED;
 		}
 		int distance = origin.diagonalDistance(target);
-		if (distance > Piece.MAX_DISTANCE) {
+		if (distance > getMaxDistance()) {
 			return Error.BAD_DISTANCE;
 		}
-		if (distance == Piece.MAX_DISTANCE) {
+		if (distance == getMaxDistance()) {
 			if (pieceProvider.getPiece(origin.betweenDiagonal(target)) == null) {
 				return Error.EATING_EMPTY;
 			}
 		}
 		return null;
+	}
+
+	int getMaxDistance() {
+		return Piece.MAX_DISTANCE;
 	}
 
 	boolean isLimit(Coordinate coordinate){
