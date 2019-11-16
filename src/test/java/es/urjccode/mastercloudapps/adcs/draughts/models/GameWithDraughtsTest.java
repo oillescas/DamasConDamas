@@ -89,4 +89,19 @@ public class GameWithDraughtsTest {
         assertEquals(game.getPiece(target).getColor(), Color.WHITE);
     }
     
+    @Test
+    public void testGivenGameWhenBlackPawnMoveBackThenOk() {
+    	Game game = new GameBuilder()
+    			.putRow(5, "b   N   ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(5,4);
+        Coordinate target = new Coordinate(4,3);
+        
+        game.move(new Coordinate(5, 0), new Coordinate(4, 1));
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(game.getPiece(target).getColor(), Color.BLACK);
+    }
+    
 }
