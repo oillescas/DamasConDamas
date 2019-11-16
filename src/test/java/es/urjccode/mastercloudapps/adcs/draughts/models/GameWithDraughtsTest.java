@@ -118,4 +118,36 @@ public class GameWithDraughtsTest {
         assertEquals(game.getPiece(target).getColor(), Color.WHITE);
     }
     
+    @Test
+    public void testGivenGameWhenBlackPawnMoveSixSquaresThenOk() {
+    	Game game = new GameBuilder()
+    			.putRow(0, "       N")
+    			.putRow(7, "      b ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(0,7);
+        Coordinate target = new Coordinate(6,1);
+        
+        game.move(new Coordinate(7, 6), new Coordinate(6, 7));
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(game.getPiece(target).getColor(), Color.BLACK);
+    }
+    
+    
+    @Test
+    public void testGivenGameWhenWhitePawnMoveAndEatingThenOk() {
+    	Game game = new GameBuilder()
+    			.putRow(3, "    n   ")
+    			.putRow(5, "  B     ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(5,2);
+        Coordinate target = new Coordinate(2,5);
+        
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertNull(game.getPiece(new Coordinate(3, 4)));
+        assertEquals(game.getPiece(target).getColor(), Color.WHITE);
+    }
 }
