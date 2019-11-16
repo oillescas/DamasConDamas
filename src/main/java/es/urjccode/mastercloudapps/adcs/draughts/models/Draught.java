@@ -5,5 +5,10 @@ class Draught extends Piece {
     Draught(Color color) {
         super(color);
     }
+    
+    @Override
+    boolean isAdvanced(Coordinate origin, Coordinate target) {
+		return true;
+	}
 
 }

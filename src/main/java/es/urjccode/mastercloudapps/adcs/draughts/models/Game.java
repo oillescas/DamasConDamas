@@ -37,7 +37,7 @@ public class Game {
 	}
 
 	public void move(Coordinate origin, Coordinate target) {
-		assert this.isCorrect(origin, target) == null;
+		assert this.isCorrect(origin, target) == null : "Incorrect move "+this.isCorrect(origin, target);
 		if (origin.diagonalDistance(target) == 2) {
 			this.board.remove(origin.betweenDiagonal(target));
 		}
