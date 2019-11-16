@@ -56,4 +56,22 @@ public class GameWithDraughtsTest {
         assertTrue(king instanceof Draught);
     }
     
+    @Test
+    public void testGivenGameWhenBlackPawnAtLimitAndEatingThenNewDraugts(){
+    	Game game = new GameBuilder()
+    			.putRow(5, "n       ")
+    			.putRow(7, "b       ")
+    			.build();
+    	
+        Coordinate origin = new Coordinate(5,0);
+        Coordinate target = new Coordinate(7,2);
+        game.move(new Coordinate(7, 0), new Coordinate(6, 1));
+        game.move(origin, target);
+        Piece king = game.getPiece(target);
+        
+        assertNull(game.getPiece(origin.betweenDiagonal(target)));
+        assertNull(game.getPiece(origin));
+        assertTrue(king instanceof Draught);
+    }
+    
 }
