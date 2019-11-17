@@ -31,8 +31,11 @@ public class Piece {
 	Error isCorrectEating(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
 		int distance = origin.diagonalDistance(target);
 		if (distance == getMaxDistance()) {
-			if (pieceProvider.getPiece(origin.betweenDiagonal(target)) == null) {
+			Piece piece = pieceProvider.getPiece(origin.betweenDiagonal(target));
+			if (piece == null) {
 				return Error.EATING_EMPTY;
+			} else if(piece.getColor().equals(pieceProvider.getPiece(origin).getColor())) {
+				return Error.EATING_SAME_COLOR;
 			}
 		}
 		return null;
