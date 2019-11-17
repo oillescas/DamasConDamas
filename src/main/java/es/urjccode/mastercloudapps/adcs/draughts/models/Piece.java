@@ -24,6 +24,12 @@ public class Piece {
 		if (distance > getMaxDistance()) {
 			return Error.BAD_DISTANCE;
 		}
+		return isCorrectEating(origin, target, pieceProvider);
+		
+	}
+
+	Error isCorrectEating(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
+		int distance = origin.diagonalDistance(target);
 		if (distance == getMaxDistance()) {
 			if (pieceProvider.getPiece(origin.betweenDiagonal(target)) == null) {
 				return Error.EATING_EMPTY;

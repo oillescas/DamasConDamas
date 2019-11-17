@@ -1,5 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import java.util.List;
+
 class Draught extends Piece {
 
     private static final int MAX_DISTANCE = 7;
@@ -16,5 +18,23 @@ class Draught extends Piece {
     @Override
 	int getMaxDistance() {
 		return Draught.MAX_DISTANCE;
+	}
+    
+    @Override
+	Error isCorrectEating(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
+		int distance = origin.diagonalDistance(target);
+		if (distance > 2) {
+			int count = 0;
+			List<Coordinate> betweens = origin.betweensDiagonal(target);
+			for (Coordinate coordinate : betweens) {
+				if(pieceProvider.getPiece(coordinate)!=null) {
+					count++;
+				}
+			}
+			if(count > 1){
+				return Error.EATING_ERROR;
+			}
+		}
+		return null;
 	}
 }
