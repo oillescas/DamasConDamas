@@ -27,9 +27,13 @@ class Draught extends Piece {
 			int count = 0;
 			List<Coordinate> betweens = origin.betweensDiagonal(target);
 			for (Coordinate coordinate : betweens) {
-				if(pieceProvider.getPiece(coordinate)!=null) {
+				Piece piece = pieceProvider.getPiece(coordinate);
+				if(piece!=null) {
 					count++;
-				}
+					if(piece.getColor()==Color.WHITE) {
+						return Error.EATING_SAME_COLOR;
+					}
+				} 
 			}
 			if(count > 1){
 				return Error.EATING_ERROR;
