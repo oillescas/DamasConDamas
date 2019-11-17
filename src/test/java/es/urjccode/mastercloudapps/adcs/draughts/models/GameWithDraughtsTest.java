@@ -180,5 +180,19 @@ public class GameWithDraughtsTest {
         
     }
     
-    
+    @Test
+    public void testGivenGameWhenBlackPawnMoveAndEatingBlackPicesThenError() {
+    	Game game = new GameBuilder()
+    			.putRow(3, "    n   ")
+    			.putRow(5, "  N   b ")
+    			.build();
+    	
+    	
+    	Coordinate origin = new Coordinate(5,2);
+        Coordinate target = new Coordinate(2,5);
+        
+        game.move(new Coordinate(5, 6), new Coordinate(4, 7));
+        assertEquals(Error.EATING_SAME_COLOR, game.isCorrect(origin, target));
+        
+    }
 }
