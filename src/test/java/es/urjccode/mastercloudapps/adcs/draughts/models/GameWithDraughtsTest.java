@@ -195,4 +195,20 @@ public class GameWithDraughtsTest {
         assertEquals(Error.EATING_SAME_COLOR, game.isCorrect(origin, target));
         
     }
+    
+    @Test
+    public void testGivenGameWhenBlackPawnMoveAndEatingTwoWhitePicesThenError() {
+    	Game game = new GameBuilder()
+    			.putRow(5, "  b b   ")
+    			.putRow(3, "  N     ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(3,2);
+        Coordinate target = new Coordinate(6,5);
+        
+        game.move(new Coordinate(5, 2), new Coordinate(4, 3));
+        
+        assertEquals(Error.EATING_ERROR, game.isCorrect(origin, target));
+        
+    }
 }
