@@ -30,7 +30,7 @@ class Draught extends Piece {
 				Piece piece = pieceProvider.getPiece(coordinate);
 				if(piece!=null) {
 					count++;
-					if(piece.getColor()==Color.WHITE) {
+					if(piece.getColor()==pieceProvider.getPiece(origin).getColor()) {
 						return Error.EATING_SAME_COLOR;
 					}
 				} 
