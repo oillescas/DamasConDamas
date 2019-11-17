@@ -67,6 +67,7 @@ public class GameTest {
                 this.advance(new Coordinate[][] { 
                     { new Coordinate(2, 1), new Coordinate(3, 0) }, }));
     }
+    
 
     @Test
     public void testGivenGameWhenNotDiagonalMovementThenError() {
@@ -124,6 +125,13 @@ public class GameTest {
         assertEquals(Error.EATING_EMPTY,
             this.advance(new Coordinate[][] { 
                 { new Coordinate(5, 4), new Coordinate(3, 2) }, }));
+    }
+    
+    @Test
+    public void testGivenGameWhenEatSameColorPieceThenError() {
+        assertEquals(Error.EATING_SAME_COLOR,
+            this.advance(new Coordinate[][] { 
+                { new Coordinate(6, 1), new Coordinate(4, 3) }, }));
     }
 
     @Test
