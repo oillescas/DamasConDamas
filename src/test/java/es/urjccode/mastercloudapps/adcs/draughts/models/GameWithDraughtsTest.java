@@ -149,8 +149,7 @@ public class GameWithDraughtsTest {
         assertNull(game.getPiece(origin));
         assertNull(game.getPiece(new Coordinate(3, 4)));
         assertEquals(game.getPiece(target).getColor(), Color.WHITE);
-    }
-    
+    }  
     
     @Test
     public void testGivenGameWhenWhitePawnMoveAndEatingTwoBlackPicesThenError() {
@@ -166,4 +165,20 @@ public class GameWithDraughtsTest {
         assertEquals(Error.EATING_ERROR, game.isCorrect(origin, target));
         
     }
+    
+    @Test
+    public void testGivenGameWhenWhitePawnMoveAndEatingWhitePicesThenError() {
+    	Game game = new GameBuilder()
+    			.putRow(3, "    b   ")
+    			.putRow(5, "  B     ")
+    			.build();
+    	
+    	Coordinate origin = new Coordinate(5,2);
+        Coordinate target = new Coordinate(2,5);
+        
+        assertEquals(Error.EATING_SAME_COLOR, game.isCorrect(origin, target));
+        
+    }
+    
+    
 }
