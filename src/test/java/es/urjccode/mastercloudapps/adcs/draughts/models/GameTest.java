@@ -135,6 +135,15 @@ public class GameTest {
     }
 
     @Test
+    public void testGivenGameWhenBlackEatSameColorPieceThenError() {
+        assertEquals(Error.EATING_SAME_COLOR,
+            this.advance(new Coordinate[][] { 
+                { new Coordinate(5, 0), new Coordinate(4, 1) }, 
+                { new Coordinate(1, 2), new Coordinate(3, 0) },
+                }));
+    }
+    
+    @Test
     public void testGivenGameWhenMoveBadDistanceThenError() {
         assertEquals(Error.BAD_DISTANCE,
                 this.advance(new Coordinate[][] { 
