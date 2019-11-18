@@ -3,6 +3,7 @@ package es.urjccode.mastercloudapps.adcs.draughts.controllers;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Color;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Game;
+import es.urjccode.mastercloudapps.adcs.draughts.models.Piece;
 import es.urjccode.mastercloudapps.adcs.draughts.models.State;
 
 public abstract class Controller {
@@ -24,6 +25,11 @@ public abstract class Controller {
 
 	public int getDimension() {
 		return this.game.getDimension();
+	}
+	
+	public Piece getPiece(Coordinate coordinate) {
+		assert coordinate != null;
+		return this.game.getPiece(coordinate);
 	}
 
 	abstract public void accept(ControllersVisitor controllersVisitor);

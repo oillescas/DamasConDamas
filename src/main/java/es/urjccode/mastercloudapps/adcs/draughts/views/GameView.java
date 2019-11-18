@@ -3,6 +3,9 @@ package es.urjccode.mastercloudapps.adcs.draughts.views;
 import es.urjccode.mastercloudapps.adcs.draughts.controllers.Controller;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Color;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
+import es.urjccode.mastercloudapps.adcs.draughts.models.King;
+import es.urjccode.mastercloudapps.adcs.draughts.models.Man;
+import es.urjccode.mastercloudapps.adcs.draughts.models.Piece;
 
 class GameView extends SubView {
 
@@ -15,17 +18,27 @@ class GameView extends SubView {
         for(int i=0; i<DIMENSION; i++){
             this.console.write((i+1)+"");
             for(int j=0; j<DIMENSION; j++){
-                Color color = controller.getColor(new Coordinate(i,j));
-                if (color == null){
+                Piece piece = controller.getPiece(new Coordinate(i,j));
+                if (piece == null){
                     this.console.write(GameView.COLORS[2]);
                 } else {
-                    this.console.write(GameView.COLORS[color.ordinal()]);
+                    this.console.write(getPieceColor(piece));
                 }
             }
             this.console.writeln((i+1)+"");
         }
         this.writeNumbersLine(DIMENSION);
 	}
+
+	String getPieceColor(Piece piece) {
+		String color = GameView.COLORS[piece.getColor().ordinal()];
+		if(piece instanceof King) {
+			color = color.toUpperCase();
+		}
+		return color;
+	}
+	
+
 
     private void writeNumbersLine(final int DIMENSION) {
         assert DIMENSION > 0;

@@ -2,7 +2,7 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import java.util.List;
 
-class King extends Piece {
+public class King extends Piece {
 
 	King(Color color) {
         super(color);

@@ -27,7 +27,7 @@ public abstract class Piece {
 		coordinate.getRow()== 7 && this.getColor() == Color.BLACK;
 	}
 
-	Color getColor() {
+	public Color getColor() {
 		return this.color;
 	}
 
