@@ -33,7 +33,7 @@ public class Game {
 				color = Color.WHITE;
 			}
 			if (color != null) {
-				return new Piece(color);
+				return new Man(color);
 			}
 		}
 		return null;
@@ -51,7 +51,7 @@ public class Game {
 		this.board.move(origin, target);
 		if (this.board.getPiece(target).isLimit(target)){
 			this.board.remove(target);
-			this.board.put(target, new Draught(Color.WHITE));
+			this.board.put(target, new King(Color.WHITE));
 		}
 		this.turn.change();
 	}
@@ -73,7 +73,7 @@ public class Game {
 		return this.board.getColor(coordinate);
 	}
 
-	public Color getColor() {
+	public Color getTurnColor() {
 		return this.turn.getColor();
 	}
 

@@ -33,7 +33,7 @@ public class PlayController extends Controller {
 	}
 
 	public Color getColor() {
-		return this.game.getColor();
+		return this.game.getTurnColor();
 	}
 
 	public boolean isBlocked() {

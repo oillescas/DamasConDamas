@@ -21,7 +21,7 @@ public class GameWithDraughtsTest {
         game.move(origin, target);
         Piece king = game.getPiece(target);
         assertNull(game.getPiece(origin));
-        assertTrue(king instanceof Draught);
+        assertTrue(king instanceof King);
 
     }
 
@@ -39,7 +39,7 @@ public class GameWithDraughtsTest {
         
         assertNull(game.getPiece(origin.betweenDiagonal(target)));
         assertNull(game.getPiece(origin));
-        assertTrue(king instanceof Draught);
+        assertTrue(king instanceof King);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class GameWithDraughtsTest {
         game.move(origin, target);
         Piece king = game.getPiece(target);
         assertNull(game.getPiece(origin));
-        assertTrue(king instanceof Draught);
+        assertTrue(king instanceof King);
     }
     
     @Test
@@ -72,7 +72,7 @@ public class GameWithDraughtsTest {
         
         assertNull(game.getPiece(origin.betweenDiagonal(target)));
         assertNull(game.getPiece(origin));
-        assertTrue(king instanceof Draught);
+        assertTrue(king instanceof King);
     }
     
     @Test

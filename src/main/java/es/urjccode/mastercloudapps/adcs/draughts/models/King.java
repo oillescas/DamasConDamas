@@ -2,24 +2,12 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import java.util.List;
 
-class Draught extends Piece {
+class King extends Piece {
 
-    private static final int MAX_DISTANCE = 7;
-
-	Draught(Color color) {
+	King(Color color) {
         super(color);
     }
-    
-    @Override
-    boolean isAdvanced(Coordinate origin, Coordinate target) {
-		return true;
-	}
-
-    @Override
-	int getMaxDistance() {
-		return Draught.MAX_DISTANCE;
-	}
-    
+  
     @Override
 	Error isCorrectEating(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
 		int distance = origin.diagonalDistance(target);
@@ -40,5 +28,10 @@ class Draught extends Piece {
 			}
 		}
 		return null;
+	}
+    
+    @Override
+	Error isCorrectSpecific(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
+		return isCorrectEating(origin, target, pieceProvider);
 	}
 }
