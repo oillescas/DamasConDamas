@@ -20,6 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import es.urjccode.mastercloudapps.adcs.draughts.controllers.StartController;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Game;
+import es.urjccode.mastercloudapps.adcs.draughts.models.GameBuilder;
 import es.urjccode.mastercloudapps.adcs.draughts.models.State;
 import es.urjccode.mastercloudapps.adcs.draughts.utils.Console;
 
@@ -57,6 +58,32 @@ public class GameViewTest {
         "6b b b b ",
         "7 b b b b",
         "8b b b b ",
+        " 12345678");
+        assertEquals(marshall(rows), marshall(argument.getAllValues()));
+    }
+    
+    @Test
+    public void testInteractWhitKing(){
+    	Game game = new GameBuilder()
+    			.putRow(0, "       N")
+    			.putRow(1, "n       ")
+    			.putRow(6, "       B")
+    			.putRow(7, "      b ")
+    			.build();
+        State state = new State();
+        StartController startController = new StartController(game, state);
+        this.gameView.write(startController);
+        verify(console, times(90)).write(argument.capture());
+        List<String> rows = Arrays.asList(
+        " 12345678",
+        "1       N",
+        "2n       ",
+        "3        ",
+        "4        ",
+        "5        ",
+        "6        ",
+        "7       B",
+        "8      b ",
         " 12345678");
         assertEquals(marshall(rows), marshall(argument.getAllValues()));
     }

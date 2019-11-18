@@ -4,17 +4,17 @@ public class GameBuilder {
 	
 	String[] rows;
 	
-	GameBuilder(){
+	public GameBuilder(){
 		this.rows = new String[8];
 	}
 	
-	GameBuilder putRow(int i, String row) {
+	public GameBuilder putRow(int i, String row) {
 		this.rows[i] = row;
 		
 		return this;
 	}
 	
-	Game build() {
+	public Game build() {
 		Board board = new Board();
 		for (int i = 0; i < rows.length; i++) {
 			String row = rows[i];
